@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/thatmattlove/addr/addr/whois"
+	"github.com/thatmattlove/addr/pkg/whois"
 )
 
 func Test_WhoisClient(t *testing.T) {
