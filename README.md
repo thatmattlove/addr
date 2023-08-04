@@ -13,7 +13,7 @@ Look up route origin information from the command-line
         <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/thatmattlove/addr?label=version&style=for-the-badge">
     </a>
 
-    `addr` gets its information from the wonderful [bgp.tools](https://bgp.tools).
+<code>addr</code> gets its information from the wonderful <a href="https://bgp.tools" target="_blank">bgp.tools</a>.
 
 </div>
 
