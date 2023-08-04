@@ -9,8 +9,8 @@ Look up route origin information from the command-line
     <a href="https://github.com/thatmattlove/addr/actions/workflows/test.yml">
         <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/thatmattlove/addr/test.yml?style=for-the-badge">
     </a>
-    <a href="https://scrutinizer-ci.com/g/thatmattlove/addr">
-        <img alt="Code Coverage" src="https://img.shields.io/scrutinizer/coverage/g/thatmattlove/oui/main?style=for-the-badge">
+    <a href="https://app.codecov.io/gh/thatmattlove/addr">
+        <img alt="Codecov" src="https://img.shields.io/codecov/c/github/thatmattlove/addr">
     </a>
     <a href="https://github.com/thatmattlove/addr/releases">
         <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/thatmattlove/addr?label=version&style=for-the-badge">
