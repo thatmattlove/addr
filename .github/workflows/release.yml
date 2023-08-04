@@ -27,7 +27,7 @@ jobs:
                   args: release --clean
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  TAP_GITHUB_TOKEN: ${{ secrets.GORELEASER_PAT }}
+                  TAP_TOKEN: ${{ secrets.GORELEASER_PAT }}
                   FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
             - name: Upload assets
               uses: actions/upload-artifact@v3
