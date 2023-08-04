@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/thatmattlove/addr/addr"
+	addr "github.com/thatmattlove/addr/pkg"
 )
 
 func IPBox(r *addr.Response, ptrs []string) string {

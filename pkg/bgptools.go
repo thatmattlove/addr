@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/biter777/countries"
-	"github.com/thatmattlove/addr/addr/whois"
+	"github.com/thatmattlove/addr/pkg/whois"
 )
 
 type Response struct {

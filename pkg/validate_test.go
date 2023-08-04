@@ -8,7 +8,7 @@ import (
 
 	"github.com/biter777/countries"
 	"github.com/stretchr/testify/assert"
-	"github.com/thatmattlove/addr/addr"
+	addr "github.com/thatmattlove/addr/pkg"
 )
 
 func TestIPValidator_NewIPValidator(t *testing.T) {

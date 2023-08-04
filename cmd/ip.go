@@ -4,9 +4,9 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/thatmattlove/addr/addr"
 	"github.com/thatmattlove/addr/cmd/style"
 	"github.com/thatmattlove/addr/internal/util"
+	addr "github.com/thatmattlove/addr/pkg"
 )
 
 var IPCmd *cobra.Command = &cobra.Command{

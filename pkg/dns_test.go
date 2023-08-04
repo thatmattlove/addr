@@ -7,7 +7,7 @@ import (
 
 	"github.com/miekg/dns"
 	"github.com/stretchr/testify/assert"
-	"github.com/thatmattlove/addr/addr"
+	addr "github.com/thatmattlove/addr/pkg"
 )
 
 func Test_DNSLookup(t *testing.T) {

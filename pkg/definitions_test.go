@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/thatmattlove/addr/addr"
+	addr "github.com/thatmattlove/addr/pkg"
 )
 
 var cases = map[*net.IPNet]string{

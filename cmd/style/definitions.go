@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/pterm/pterm"
-	"github.com/thatmattlove/addr/addr"
+	addr "github.com/thatmattlove/addr/pkg"
 )
 
 var Box = &pterm.BoxPrinter{
