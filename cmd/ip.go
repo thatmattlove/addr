@@ -24,14 +24,14 @@ var IPCmd *cobra.Command = &cobra.Command{
 				r, err := addr.QueryIPPrefix(arg)
 				if err != nil {
 					p.Stop()
-					cmd.PrintErr(err.Error())
+					cmd.PrintErr(err.Error() + "\n")
 					os.Exit(1)
 				}
 				ptrs, _ := addr.DNSReverseLookup(r.IP)
 				p.Stop()
 				cmd.Println(style.IPBox(r, ptrs))
 			} else {
-				cmd.PrintErrf("invalid argument '%s'", arg)
+				cmd.PrintErrf("invalid argument '%s'\n", arg)
 				os.Exit(1)
 			}
 		}

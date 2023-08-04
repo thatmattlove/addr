@@ -3,6 +3,7 @@ package whois
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"net"
 	"strings"
 	"time"
@@ -32,11 +33,8 @@ func (w *Whois) Query(q string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	rx := make([]byte, 1024)
-	_, err = w.Connection.Read(rx)
-	if err != nil {
-		return "", err
-	}
+	w.Connection.SetReadDeadline(time.Now().Add(time.Second * 10))
+	rx, err := io.ReadAll(w.Connection)
 	if err != nil {
 		return "", err
 	}

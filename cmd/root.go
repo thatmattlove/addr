@@ -9,11 +9,12 @@ import (
 	"github.com/thatmattlove/addr/internal/util"
 )
 
-func Init() *cobra.Command {
+func Init(version string) *cobra.Command {
 	root := &cobra.Command{
-		Use:   "addr",
-		Short: "addr is a tool to look up IP & ASN ownership and routing information.",
-		Args:  cobra.ArbitraryArgs,
+		Use:     "addr",
+		Short:   "addr is a tool to look up IP & ASN ownership and routing information.",
+		Args:    cobra.ArbitraryArgs,
+		Version: version,
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) == 0 {
 				cmd.Help()
@@ -26,7 +27,7 @@ func Init() *cobra.Command {
 					r, err := addr.QueryIPPrefix(arg)
 					if err != nil {
 						p.Stop()
-						cmd.PrintErr(err.Error())
+						cmd.PrintErr(err.Error() + "\n")
 						os.Exit(1)
 					}
 					ptrs, _ := addr.DNSReverseLookup(r.IP)
@@ -37,12 +38,12 @@ func Init() *cobra.Command {
 					r, err := addr.QueryASN(arg)
 					p.Stop()
 					if err != nil {
-						cmd.PrintErr(err.Error())
+						cmd.PrintErr(err.Error() + "\n")
 						os.Exit(1)
 					}
 					cmd.Println(style.ASNBox(r))
 				} else {
-					cmd.PrintErrf("invalid argument '%s'", arg)
+					cmd.PrintErrf("invalid argument '%s'\n", arg)
 					os.Exit(1)
 				}
 			}

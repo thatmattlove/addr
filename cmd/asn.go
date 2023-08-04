@@ -24,12 +24,12 @@ var ASNCmd *cobra.Command = &cobra.Command{
 				r, err := addr.QueryASN(arg)
 				p.Stop()
 				if err != nil {
-					cmd.PrintErr(err.Error())
+					cmd.PrintErr(err.Error() + "\n")
 					os.Exit(1)
 				}
 				cmd.Println(style.ASNBox(r))
 			} else {
-				cmd.PrintErrf("invalid argument '%s'", arg)
+				cmd.PrintErrf("invalid argument '%s'\n", arg)
 				os.Exit(1)
 			}
 		}

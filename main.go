@@ -1,7 +1,14 @@
 package main
 
-import "github.com/thatmattlove/addr/cmd"
+import (
+	_ "embed"
+
+	"github.com/thatmattlove/addr/cmd"
+)
+
+//go:embed .version
+var Version string
 
 func main() {
-	cmd.Init().Execute()
+	cmd.Init(Version).Execute()
 }

@@ -2,6 +2,7 @@ package addr
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"net"
 	"strings"
@@ -27,37 +28,52 @@ var (
 	WHOIS_PORT uint   = 43
 )
 
+var ErrEmptyResponse = errors.New("empty response")
+
 func ParseResponse(res string) (*Response, error) {
 	scanner := bufio.NewScanner(strings.NewReader(res))
 	scanner.Scan()
+
 	// Get first line, which will either be a warning or the headers.
 	line := scanner.Text()
 	if line == "" {
-		return nil, fmt.Errorf("empty response")
+		return nil, ErrEmptyResponse
 	}
 	if strings.Contains(line, "Warning") {
 		// Skip ahead to the header row if the first row is a warning.
 		scanner.Scan()
 	}
-	// Move from the header row to the first data row, which is the only row we care about.
-	scanner.Scan()
 
-	line = scanner.Text()
-
-	parts := strings.Split(line, "|")
 	values := []string{}
-	for _, p := range parts {
-		values = append(values, strings.TrimSpace(p))
-	}
+	parts := []string{}
 
-	if len(values) != 7 {
+	var next = func() error {
+		scanner.Scan()
 		line = scanner.Text()
 		parts = strings.Split(line, "|")
 		for _, p := range parts {
 			values = append(values, strings.TrimSpace(p))
 		}
+		if line == "" {
+			return ErrEmptyResponse
+		}
+		return nil
+	}
+
+	// Move from the header row to the first data row, which is the only row we care about.
+	err := next()
+	if err != nil {
+		return nil, err
+	}
+
+	if len(values) != 7 {
+		var err error
+		err = next()
+		if err != nil {
+			return nil, err
+		}
 		if len(values) != 7 {
-			err := fmt.Errorf("expected 7 columns, got %d", len(values))
+			err = fmt.Errorf("expected 7 columns, got %d", len(values))
 			return nil, err
 		}
 	}

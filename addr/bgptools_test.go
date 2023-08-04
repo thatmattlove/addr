@@ -38,12 +38,13 @@ const (
 func Test_QueryASN(t *testing.T) {
 	t.Run("basic", func(t *testing.T) {
 		t.Parallel()
-		asn, err := addr.QueryASN("as14525")
-		assert.NoError(t, err)
-		assert.Equal(t, uint64(14525), asn.ASN)
-		assert.Equal(t, "ARIN", asn.Registry)
-		assert.Equal(t, countries.USA, asn.Country)
-		assert.Equal(t, "Stellar Technologies Inc.", asn.Name)
+		q := "as14525"
+		asn, err := addr.QueryASN(q)
+		assert.NoError(t, err, q)
+		assert.Equal(t, uint64(14525), asn.ASN, q)
+		assert.Equal(t, "ARIN", asn.Registry, q)
+		assert.Equal(t, countries.USA, asn.Country, q)
+		assert.Equal(t, "Stellar Technologies Inc.", asn.Name, q)
 	})
 	t.Run("invalid asn", func(t *testing.T) {
 		t.Parallel()
@@ -67,17 +68,26 @@ func Test_QueryASN(t *testing.T) {
 }
 
 func Test_QueryIPPrefix(t *testing.T) {
-	t.Run("basic", func(t *testing.T) {
-		pfx := "1.1.1.0/24"
-		i, n, err := net.ParseCIDR(pfx)
-		assert.NoError(t, err)
-		data, err := addr.QueryIPPrefix(pfx)
+	t.Run("ip", func(t *testing.T) {
+		t.Parallel()
+		i := net.ParseIP("1.1.1.1")
+		data, err := addr.QueryIPPrefix(i.String())
 		assert.NoError(t, err)
 		assert.NotNil(t, data)
 		assert.NotNil(t, data.IP)
 		assert.NotNil(t, data.Prefix)
 		assert.Equal(t, i.String(), data.IP.String())
-		assert.Equal(t, n.String(), data.Prefix.String())
+		assert.Equal(t, "1.1.1.0/24", data.Prefix.String())
+	})
+	t.Run("cidr", func(t *testing.T) {
+		t.Parallel()
+		pfx := "1.1.1.0/24"
+		data, err := addr.QueryIPPrefix(pfx)
+		assert.NoError(t, err)
+		assert.NotNil(t, data)
+		assert.NotNil(t, data.IP)
+		assert.NotNil(t, data.Prefix)
+		assert.Equal(t, pfx, data.Prefix.String())
 	})
 	t.Run("invalid query", func(t *testing.T) {
 		t.Parallel()
