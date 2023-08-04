@@ -12,9 +12,12 @@ Look up route origin information from the command-line
     <a href="https://github.com/thatmattlove/addr/releases">
         <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/thatmattlove/addr?label=version&style=for-the-badge">
     </a>
+
+    `addr` gets its information from the wonderful [bgp.tools](https://bgp.tools).
+
 </div>
 
-`addr` gets its information from the wonderful [bgp.tools](https://bgp.tools).
+
 
 ## Installation
 
@@ -32,17 +35,17 @@ brew install addr
 #### Debian/Ubuntu (APT)
 
 ```console
-$ echo "deb [trusted=yes] https://repo.fury.io/thatmattlove/ /" > /etc/apt/sources.list.d/thatmattlove.fury.list
-$ sudo apt update
-$ sudo apt install addr
+echo "deb [trusted=yes] https://repo.fury.io/thatmattlove/ /" > /etc/apt/sources.list.d/thatmattlove.fury.list
+sudo apt update
+sudo apt install addr
 ```
 
 #### RHEL/CentOS (YUM)
 
 ```console
-$ echo -e "[fury-thatmattlove]\nname=thatmattlove\nbaseurl=https://repo.fury.io/thatmattlove/\nenabled=1\ngpgcheck=0" > /etc/yum.repos.d/thatmattlove.fury.repo
-$ sudo yum update
-$ sudo yum install addr
+echo -e "[fury-thatmattlove]\nname=thatmattlove\nbaseurl=https://repo.fury.io/thatmattlove/\nenabled=1\ngpgcheck=0" > /etc/yum.repos.d/thatmattlove.fury.repo
+sudo yum update
+sudo yum install addr
 ```
 
 ### Windows
