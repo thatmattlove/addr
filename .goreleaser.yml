@@ -1,0 +1,62 @@
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - freebsd
+      - windows
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+      - goos: windows
+        goarch: arm
+      - goos: freebsd
+        goarch: arm64
+      - goos: freebsd
+        goarch: arm
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+brews:
+  - name: addr
+    homepage: https://github.com/thatmattlove/addr
+    description: Look up route origin information from the command-line
+    license: BSD-3-Clause-Clear
+    commit_author:
+      name: Matt Love
+      email: matt@stunninglyclear.com
+    tap:
+      owner: thatmattlove
+      name: homebrew-addr
+      token: '{{ .Env.TAP_TOKEN }}'
+
+nfpms:
+  - id: linux_packages
+    homepage: https://github.com/thatmattlove/addr
+    maintainer: Matt Love <matt@stunninglyclear.com>
+    description: MAC Address CLI Toolkit
+    license: BSD-3-Clause-Clear
+    formats:
+      - deb
+      - rpm
+
+publishers:
+  - name: fury.io
+    ids:
+      - linux_packages
+    dir: '{{ dir .ArtifactPath }}'
+    cmd: curl -F package=@{{ .ArtifactName }} https://{{ .Env.FURY_TOKEN }}@push.fury.io/thatmattlove/
