@@ -58,7 +58,32 @@ sudo yum install addr
 ## Usage
 
 ```console
+❯ ./addr --help
+addr is a tool to look up IP & ASN ownership and routing information.
 
+Usage:
+  addr [flags]
+  addr [command]
+
+Available Commands:
+  asn         Look up an ASN
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  ip          Look up an IP address or prefix
+
+Flags:
+  -h, --help      help for addr
+  -v, --version   version for addr
+
+Use "addr [command] --help" for more information about a command.
 ```
+
+### ASN
+
+![](https://github.com/thatmattlove/addr/blob/main/screenshot1.png?raw=true)
+
+### IP Address/Prefix
+
+![](https://github.com/thatmattlove/addr/blob/main/screenshot2.png?raw=true)
 
 ![GitHub](https://img.shields.io/github/license/thatmattlove/addr?style=for-the-badge&color=black)
