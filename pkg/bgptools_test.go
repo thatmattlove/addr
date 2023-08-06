@@ -7,6 +7,7 @@ import (
 	"github.com/biter777/countries"
 	"github.com/stretchr/testify/assert"
 	addr "github.com/thatmattlove/addr/pkg"
+	goasn "github.com/thatmattlove/go-asn"
 )
 
 const (
@@ -41,7 +42,7 @@ func Test_QueryASN(t *testing.T) {
 		q := "as14525"
 		asn, err := addr.QueryASN(q)
 		assert.NoError(t, err, q)
-		assert.Equal(t, uint64(14525), asn.ASN, q)
+		assert.True(t, asn.ASN.Equal(goasn.MustParse("14525")), q)
 		assert.Equal(t, "ARIN", asn.Registry, q)
 		assert.Equal(t, countries.USA, asn.Country, q)
 		assert.Equal(t, "Stellar Technologies Inc.", asn.Name, q)

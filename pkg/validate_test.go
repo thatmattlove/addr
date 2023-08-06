@@ -9,6 +9,7 @@ import (
 	"github.com/biter777/countries"
 	"github.com/stretchr/testify/assert"
 	addr "github.com/thatmattlove/addr/pkg"
+	goasn "github.com/thatmattlove/go-asn"
 )
 
 func TestIPValidator_NewIPValidator(t *testing.T) {
@@ -122,7 +123,7 @@ func TestIPValidator_Validate(t *testing.T) {
 		shouldQuery, response := v.Validate()
 		assert.False(t, shouldQuery)
 		assert.IsType(t, &addr.Response{}, response)
-		assert.Equal(t, uint64(0), response.ASN)
+		assert.Equal(t, goasn.ASN{0, 0, 0, 0}, response.ASN)
 		assert.Equal(t, addr.TXT_LINK_LOCAL, response.Name)
 		assert.Equal(t, countries.USA, response.Country)
 		assert.Equal(t, &ip, response.IP)
@@ -145,7 +146,7 @@ func TestIPValidator_Validate(t *testing.T) {
 		shouldQuery, response := v.Validate()
 		assert.False(t, shouldQuery)
 		assert.IsType(t, &addr.Response{}, response)
-		assert.Equal(t, uint64(0), response.ASN)
+		assert.Equal(t, goasn.ASN{0, 0, 0, 0}, response.ASN)
 		assert.Equal(t, addr.TXT_DOC, response.Name)
 		assert.Equal(t, countries.USA, response.Country)
 		assert.Equal(t, &ip, response.IP)

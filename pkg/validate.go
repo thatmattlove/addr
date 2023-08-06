@@ -4,6 +4,7 @@ import (
 	"net"
 
 	"github.com/biter777/countries"
+	goasn "github.com/thatmattlove/go-asn"
 )
 
 type IPValidator struct {
@@ -107,7 +108,7 @@ func (ipv *IPValidator) Validate() (bool, *Response) {
 		return true, nil
 	}
 	response := &Response{
-		ASN:       0,
+		ASN:       goasn.ASN{0, 0, 0, 0},
 		IP:        &ipv.IP,
 		Prefix:    pfx,
 		Name:      txt,

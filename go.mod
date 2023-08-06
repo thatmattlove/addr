@@ -7,7 +7,8 @@ require (
 	github.com/miekg/dns v1.1.55
 	github.com/pterm/pterm v0.12.63
 	github.com/spf13/cobra v1.7.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.4
+	github.com/thatmattlove/go-asn v0.0.2
 )
 
 require (

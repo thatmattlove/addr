@@ -10,10 +10,11 @@ import (
 
 	"github.com/biter777/countries"
 	"github.com/thatmattlove/addr/pkg/whois"
+	goasn "github.com/thatmattlove/go-asn"
 )
 
 type Response struct {
-	ASN       uint64
+	ASN       goasn.ASN
 	IP        *net.IP
 	Prefix    *net.IPNet
 	Country   countries.CountryCode
@@ -86,7 +87,7 @@ func ParseResponse(res string) (*Response, error) {
 	allocatedStr := values[5] // 'Allocated' column.
 	name := values[6]         // 'AS Name' column.
 
-	asn, err := ParseASN(asnStr)
+	asn, err := goasn.Parse(asnStr)
 	if err != nil {
 		return nil, err
 	}
@@ -128,7 +129,7 @@ func ParseResponse(res string) (*Response, error) {
 }
 
 func QueryASN(asnStr string) (*Response, error) {
-	asn, err := ParseASN(asnStr)
+	asn, err := goasn.Parse(asnStr)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +137,7 @@ func QueryASN(asnStr string) (*Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	result, err := w.Query(fmt.Sprintf("as%d", asn))
+	result, err := w.Query(fmt.Sprintf("as%s", asn.ASPlain()))
 	if err != nil {
 		return nil, err
 	}
